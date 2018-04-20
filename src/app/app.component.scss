@@ -1,5 +1,19 @@
 :host {
-    .app-form {
-        padding: 10rem;
+    margin: 0 6rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        margin: 2rem 0;
+    }
+
+    > .app-filter {
+        align-self: center;
+    }
+
+    > .app-results {
+        height: 100%;
+        overflow: auto;
     }
 }

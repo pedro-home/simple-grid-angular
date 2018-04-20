@@ -1,11 +1,38 @@
-<form class="app-form">
-    <div class="app-datesearch">
-        <mat-form-field floatLabel="always">
-          <mat-label>Exchange Rates Date</mat-label>
-          <input matInput [matDatepicker]="picker" placeholder="MM/YYYY">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <button mat-button>Search</button>
-    </div>
-  </form>
+<div class="app-filter">
+	<form class="app-form" #formData="ngForm" (ngSubmit)="search(formData)">
+		<mat-form-field floatLabel="always">
+			<mat-label>Exchange Rates Date</mat-label>
+			<input matInput name="searchDate" [matDatepicker]="compDate" placeholder="MM/DD/YYYY" ngModel required>
+			<mat-datepicker-toggle matSuffix [for]="compDate"></mat-datepicker-toggle>
+			<mat-datepicker #compDate></mat-datepicker>
+		</mat-form-field>
+		<button mat-raised-button color="primary">Search</button>
+	</form>
+</div>
+<div class="app-results">
+	<mat-table #table [dataSource]="tableData" matSort>
+		<ng-container matColumnDef="country">
+			<mat-header-cell *matHeaderCellDef mat-sort-header>země</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{row['country']}}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="currency">
+			<mat-header-cell *matHeaderCellDef>měna</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{row['currency']}}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="quantity">
+			<mat-header-cell *matHeaderCellDef>množství</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{row['quantity']}}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="code">
+			<mat-header-cell *matHeaderCellDef>kód</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{row['code']}}</mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="rate">
+			<mat-header-cell *matHeaderCellDef>kurz</mat-header-cell>
+			<mat-cell *matCellDef="let row">{{row['rate']}}</mat-cell>
+		</ng-container>
+	
+		<mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: columns;"></mat-row>
+	</mat-table>
+</div>

@@ -4,8 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { MatDatepickerModule, MatTableModule, MatNativeDateModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { MatDatepickerModule, MatTableModule, MatNativeDateModule, MatButtonModule, MatInputModule, MatSortModule } from '@angular/material';
+
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
@@ -23,13 +26,19 @@ import { AppComponent } from './app.component';
 
     // Common
     CommonModule,
+    FormsModule,
+    
+
+    // Services
+    HttpModule,
 
     // Material
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatTableModule,
-    MatNativeDateModule
+    MatSortModule
   ],
 
   providers: [],
